@@ -1,0 +1,65 @@
+include ./mixins.pug
+
+<!DOCTYPE html>
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(href="https://img.icons8.com/pastel-glyph/64/000000/hearts.png" rel="shortcut icon" type="image/x-icon")
+    script(async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZBOkpUbrwLvzyNxO6gTukvkv6VNNzGq4&callback=initMap" type="text/javascript")
+    title ITMO | main page
+  body
+    .wrapper
+      .maincontent
+        main.main
+          .container
+            h1.main__title Информация о кандидате
+            form.main__form(id="myForm" action="")
+              .main__form-item.main__form-item--lastname
+                label.main__form-item-subtext(for="lastname") Фамилия
+                input.main__form-item-input(id="lastname" type="text" name="lastname" placeholder="Введите вашу фамилию" required)
+                .error
+              .main__form-item.main__form-item--name
+                label.main__form-item-subtext(for="name") Имя
+                input.main__form-item-input(id="name" type="text" name="name" placeholder="Введите ваше имя" required)
+                .error
+              .main__form-item.main__form-item--phone
+                label.main__form-item-subtext(for="phone") Телефон
+                input.main__form-item-input(id="phone" type="tel" name="phone" placeholder="+7 (___) ___ - __ - __" required)
+                .error
+              .main__form-item.main__form-item--email
+                label.main__form-item-subtext(for="email") Email
+                input.main__form-item-input(id="email" type="email" name="email" placeholder="primer@corp.ifmo.ru" required)
+                .error
+              .main__form-item.main__form-item--date
+                label.main__form-item-subtext(for="date") Дата рождения
+                input.main__form-item-input.main__form-item-input--date(id="date" type="date" name="date" required)
+                .error
+              .main__form-item.main__form-item--photo
+                p.main__form-item-subtext Фотография
+                .main__form-item-row
+                  .main__form-item-icon
+                  label.main__form-item-subtext-photo(for="photo") Прикрепить фото
+                  p.main__form-item-placeholder (формат: .png, .jpg, не более 2 Мб)
+                input.main__form-item-input.main__form-item-input--photo(id="photo" type="file" name="photo" accept="image/*")
+              .main__form-item.main__form-item--address
+                label.main__form-item-subtext(for="address") Адрес проживания
+                input.main__form-item-input(id="address" type="text" name="address" value="" placeholder="Введите адрес вручную или поставьте точку на карте, тогда он подставится автоматически" required)
+                .error
+              .main__form-item-map(id="map")
+              .main__form-item.main__form-item--info
+                .main__form-item--info-row
+                  label.main__form-item-subtext.main__form-item-subtext--info(for="info") Дополнительная информация
+                  p.main__form-item--info-row-text Максимальное количество символов: 300
+                textarea.main__form-item-input(id="info" type="textarea" name="info" placeholder="Введите ваше сообщение" maxlength="300" rows="5" style="resize: none")
+              p.main__form-item-script
+                | Поля, отмеченные звездочкой 
+                span *
+                |, обязательны для заполнения
+              button.main__form-item-button(id="send") Отправить
+              .main__popup
+                .main__popup-exit
+                  .main__popup-exit-stick
+                p.main__popup-text Ваше сообщение успешно отправлено!
+              .main__popup-bg

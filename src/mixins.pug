@@ -1,0 +1,10 @@
+mixin icon(name, className)
+  - var icon = require(`images/icons/${name}.svg`);
+  svg(class=className viewBox=icon.viewBox preserveAspectRatio="none")
+    use(xlink:href=icon.url)
+
+mixin image(path, className)
+  img(src=require(`images/${path}`) class=className)
+
+mixin link(path)
+  link(href=require(`images/icons/${path}`) rel="shortcut icon" type="image/x-icon")

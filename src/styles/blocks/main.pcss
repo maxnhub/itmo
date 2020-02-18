@@ -1,0 +1,240 @@
+.main {
+  padding-top: 38px;
+  padding-bottom: 42px;
+  &__title {
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  &__form {
+    display: grid;
+    grid-template-areas: "lastname name"
+    "phone email"
+    "date photo"
+    "address address"
+    "map map"
+    "info info"
+    "script ."
+    "button button";
+    grid-gap: 32px;
+    grid-template-columns: 48% 48%;
+    @include phones {
+      grid-template-columns: 96%;
+      grid-template-areas: "lastname"
+      "name"
+      "phone"
+      "email"
+      "date"
+      "photo"
+      "address"
+      "map"
+      "info"
+      "script"
+      "button";
+    }
+    &-item {
+      display: flex;
+      flex-direction: column;
+      &--lastname {
+        grid-area: lastname;
+      }
+      &--name {
+        grid-area: name;
+      }
+      &--phone {
+        grid-area: phone;
+      }
+      &--email {
+        grid-area: email;
+      }
+      &--date {
+        grid-area: date;
+      }
+      &--address {
+        grid-area: address;
+      }
+      &--info {
+        grid-area: info;
+        margin-bottom: 12px;
+        & .main__form-item-subtext:after {
+          display: none;
+        }
+        &-row {
+          display: flex;
+          justify-content: space-between;
+          &-text {
+            color: $bgtext-color;
+          }
+        }
+      }
+      &--photo {
+        grid-area: photo;
+        position: relative;
+        & .main__form-item-subtext:after {
+          display: none;
+        }
+      }
+      &-row {
+        display: flex;
+        align-items: center;
+        padding-top: 10px;
+      }
+      &-placeholder {
+        color: $bgtext-color;
+      }
+      &-subtext {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 24px;
+        margin-bottom: 10px;
+        &:after {
+          content: "*";
+          color: #FF0000;
+          margin-left: 5px;
+        }
+        &-photo {
+          color: #3951E3;
+          margin-right: 5px;
+          padding-left: 35px;
+          cursor: pointer;
+        }
+        &--info {
+      
+        }
+      }
+      &-icon {
+        width: 28px;
+        height: 24px;
+        background: url(../images/content/pic.png) no-repeat center;
+        margin-right: 5px;
+        position: absolute;
+        bottom: 13px;
+        left: 0;
+        @include phones {
+          bottom: 0;
+        }
+      }
+      &-input {
+        padding: 10px 15px;
+        &:placeholder {
+          color: #B2B2B2;
+        }
+        &--date {
+          width: 30%;
+          &::-webkit-calendar-picker-indicator {
+            color: transparent;
+            opacity: 1;
+            background: url(../images/icons/today.png) no-repeat center;
+            background-size: cover;
+          }
+          @include tablets {
+            width: 50%;
+          }
+        }
+        &--photo {
+          opacity: 0;
+          z-index: -1;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+      &-map {
+        grid-area: map;
+        height: 427px;
+        width: 100%;
+        margin-bottom: 32px;
+      }
+      &-script {
+        margin-bottom: 41px;
+        grid-area: script;
+        & span {
+          color: #FF0000;
+        }
+      }
+      &-button {
+        grid-area: button;
+        background: #3951E3;
+        border-radius: 90px;
+        color: #fff;
+        padding: 10px 15px;
+        width: 120px;
+        margin: 0 auto;
+      }
+    }
+  }
+  &__popup {
+    display: none;
+    &-text {
+      font-weight: bold;
+      font-size: 22px;
+      line-height: 30px;
+      text-align: center;
+      max-width: 350px;
+      position: relative;
+    }
+    &-exit {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      cursor: pointer;
+    }
+    &--active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      left: 30%;
+      top: 30%;
+      color: #000;
+      background: #fff;
+      width: 544px;
+      height: 322px;
+      z-index: 10;
+    }
+  }
+}
+
+.main__popup-exit-stick {
+  transform:rotate(50deg);
+  &, &:after {
+    background: #000;
+    width: 1.5rem;
+    height: 0.3125rem;
+    border-radius: 0.1875rem;
+  }
+
+  &:after {
+    content: '';
+    display: block;
+    position: absolute;
+  }
+
+  &:after {
+    bottom: 0;
+    transform:rotate(80deg);
+  }
+}
+
+.error {
+  color: #FF0000;
+}
+
+.main__popup-bg {
+  display: none;
+  &--active{
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.6;
+    z-index: 5;
+  } 
+}
